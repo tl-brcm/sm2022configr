@@ -1,0 +1,3 @@
+#!/bin/bash
+ADMINUIHOST=ps.k8s.demo
+CONFPATH=/opt/CA/secure-proxy/proxy-engine/conf/
