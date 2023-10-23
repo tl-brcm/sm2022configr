@@ -1,7 +1,8 @@
 #!/bin/bash
 # * 10-adminui.sh -- Access Gateway as proxy for Admin UI
-MYPATH="$(cd $(dirname "$0"); pwd)"
-. ./."$(basename "$0" | cut -f1 -d.)".shlib
+MYPATH="$(cd "$(dirname "${BASH_SOURCE}")"; pwd)"
+cd "$MYPATH"
+. ./."$(basename "$BASH_SOURCE" | cut -f1 -d.)".shlib
 #CONFPATH=/opt/CA/secure-proxy/proxy-engine/conf/
 sed -i '/hostnames="/a \
 enableredirectrewrite=yes\
