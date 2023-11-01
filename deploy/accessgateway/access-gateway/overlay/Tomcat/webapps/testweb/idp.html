@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+</head> 
+<body> 
+  <script type="text/javascript"> 
+   if (window.parent !== window) { 
+       window.parent.postMessage("RECEIVER_READY", "*"); 
+       window.addEventListener("message", function (e) { 
+          sessionStorage.setItem("idpData", e.data); 
+          window.parent.postMessage("RECEIVED_DATA", "*"); 
+       }, false); 
+     } 
+  </script> 
+ </body> 
+ </html>

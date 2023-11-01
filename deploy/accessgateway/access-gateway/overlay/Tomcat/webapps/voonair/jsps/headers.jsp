@@ -81,7 +81,7 @@
 </div>
 
 <div class="container bg-1 text-center">
-  <h3 class="margin">Welcome,  <%=request.getHeader("First Name")%></h3>
+  <h3 class="margin">Welcome,  <%=request.getHeader("firstname")%></h3>
 </div>
 
 <!-- Second Container -->
@@ -90,9 +90,9 @@
   <p>
 	  <ul class="list-group">
 		<li class="list-group-item list-group-item-success" style="width:20%">User Info</li>
-	    <li class="list-group-item list-group-item-success" ><%= "Name: " + request.getHeader("First Name") + ", " + request.getHeader("Last Name")%></li>
-	    <li class="list-group-item list-group-item-success"><%= "Phone Number: " +request.getHeader("Phone Number")%></li>
-	    <li class="list-group-item list-group-item-success"><%= "Email Address: " +request.getHeader("EmailAddress")%></li>
+	    <li class="list-group-item list-group-item-success" ><%= "Name: " + request.getHeader("firstname") + ", " + request.getHeader("lastname")%></li>
+	    <li class="list-group-item list-group-item-success"><%= "Phone Number: " +request.getHeader("phonenumber")%></li>
+	    <li class="list-group-item list-group-item-success"><%= "Email Address: " +request.getHeader("email")%></li>
 	  </ul>
   </p>
   <br/>
