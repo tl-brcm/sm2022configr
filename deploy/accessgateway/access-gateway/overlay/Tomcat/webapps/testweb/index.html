@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Contents</title>
+    <style>
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>This is a test page that prints out the ID token contents in the session store.</p>
+    <table id="sessionTable">
+        <thead>
+            <tr>
+                <th>Attribute Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be added by JavaScript -->
+        </tbody>
+    </table>
+    
+    <script type="text/javascript">
+        // Get the idpData from sessionStorage
+        var idpDataString = sessionStorage.getItem('idpData');
+        
+        if (idpDataString) {
+            // Parse the JSON string
+            var idpData = JSON.parse(idpDataString);
+            
+            // Get the id_token from idpData
+            var idToken = idpData.id_token;
+            
+            // Check if id_token exists
+            if (idToken) {
+                // Base64Url decode and parse the JSON (assuming a typical JWT structure)
+                var payloadString = atob(idToken.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'));
+                var payload = JSON.parse(payloadString);
+                
+                // Get the table body element
+                var tbody = document.getElementById('sessionTable').getElementsByTagName('tbody')[0];
+                
+                // Iterate through the payload and add rows to the table
+                for (var key in payload) {
+                    var newRow = tbody.insertRow();
+                    var cell1 = newRow.insertCell(0);
+                    var cell2 = newRow.insertCell(1);
+                    cell1.textContent = key;
+                    cell2.textContent = payload[key];
+                }
+            }
+        }
+    </script>
+</body>
+</html>
