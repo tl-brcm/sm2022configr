@@ -14,3 +14,6 @@ sed -i '/\/Contexts/i \
 			path="testweb"\
 			enable="yes"\
 		</Context>' /opt/CA/secure-proxy/proxy-engine/conf/server.conf
+
+# Enable the az service 
+sed '/<Context name="Authentication\/Authorization web services"/,/<\/Context>/ s/enable="no"/enable="yes"/' /opt/CA/secure-proxy/proxy-engine/conf/server.conf
