@@ -103,6 +103,10 @@ H3, H4 { font-size: 9pt;
 <h1> Header Variable List </h1> <br> 
 
 
+Auth Factors:
+<ul>
+	<li> Frist Factor: SiteMinder Form auth </li>	
+</ul> 
 
 
 
