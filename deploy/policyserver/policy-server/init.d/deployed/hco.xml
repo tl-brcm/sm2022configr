@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by CA SiteMinder Version 12.8.0801.3003
+     by os:tony
+     at 00:53:24 on 2025-02-03 -->
+<XPS>
+    <XPSVersion>1</XPSVersion>
+    <HostInformation>ps8</HostInformation>
+    <XPSAdmin>os:tony</XPSAdmin>
+    <PolicyData IsDumpExport="false">
+        <References>
+            <ReferenceValue ReferenceId="Ref00001">
+                <StringValue>ps9,44441,44442,44443</StringValue>
+            </ReferenceValue>
+        </References>
+        <Object Class="CA.SM::HostConfig" Xid="CA.SM::HostConfig@21-000ea3e6-b013-1765-ad9c-0a79c0a80000" CreatedDateTime="2024-12-20T17:57:39" ModifiedDateTime="2024-12-20T17:57:39" UpdatedBy="SMSTUB" UpdateMethod="Internal" ExportType="Replace">
+            <Property Name="CA.SM::HostConfig.Name">
+                <StringValue>ps8-hostConfig</StringValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.Desc">
+                <StringValue>Created by installer</StringValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.NewSocketStep">
+                <NumberValue>2</NumberValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.MaxSocketsPerPort">
+                <NumberValue>20</NumberValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.MinSocketsPerPort">
+                <NumberValue>2</NumberValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.EnableFailOver">
+                <BooleanValue>true</BooleanValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.RequestTimeout">
+                <NumberValue>60</NumberValue>
+            </Property>
+            <Property Name="CA.SM::HostConfig.PolicyServer">
+                <LinkValue><XREF>Ref00001</XREF></LinkValue>
+            </Property>
+        </Object><!-- Xid="CA.SM::HostConfig@21-000ea3e6-b013-1765-ad9c-0a79c0a80000" -->
+    </PolicyData>
+</XPS>
