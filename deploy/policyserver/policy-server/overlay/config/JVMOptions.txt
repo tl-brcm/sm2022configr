@@ -9,7 +9,7 @@
 -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=org.apache.xerces.parsers.XML11Configuration
 -Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser
 -Djava.endorsed.dirs=/opt/CA/siteminder/bin/endorsed
--Djava.class.path=/opt/CA/siteminder/resources:/opt/CA/siteminder/config/properties:/opt/CA/siteminder/bin/jars/smbootstrap.jar:/opt/CA/siteminder/bin/thirdparty/log4j-api-2.20.0.jar:/opt/CA/siteminder/bin/thirdparty/log4j-core-2.20.0.jar:/opt/CA/siteminder/bin/thirdparty/log4j-slf4j2-impl-2.20.0.jar;/opt/CA/siteminder/bin/jars/amr-active-rule-1.0-SNAPSHOT.jar
+-Djava.class.path=/opt/CA/siteminder/resources:/opt/CA/siteminder/config/properties:/opt/CA/siteminder/bin/jars/smbootstrap.jar:/opt/CA/siteminder/bin/thirdparty/log4j-api-2.20.0.jar:/opt/CA/siteminder/bin/thirdparty/log4j-core-2.20.0.jar:/opt/CA/siteminder/bin/thirdparty/log4j-slf4j2-impl-2.20.0.jar:/opt/CA/siteminder/bin/jars/amr-active-rule-1.0-SNAPSHOT.jar
 -Dlog4j.configurationFile=/opt/CA/siteminder/config/log4j2.properties
 -Djava.util.logging.config.file=/opt/CA/siteminder/config/properties/logging.properties
 -Dorg.apache.xml.security.ignoreLineBreaks=true
