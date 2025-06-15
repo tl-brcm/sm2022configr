@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- SiteMinder directory template file for eTrust user directories. --><!-- Copyright 2002-2007 CA, Inc. All rights reserved.  --><!-- CA, Inc. claims copyright in this program and documentation as an unpublished work, versions of  --><!-- which were first licensed on the date indicated in the foregoing  --><!-- notice. Claim of copyright does not imply waiver of CA's other rights.  --><!--   ******************** Directory Information ********************  --><!-- IMSDirectory contains a Provider element, ImsManagedObject elements, and optionally ImsManagedObjectAttrValidation, DirectorySearch, SelfSubscribingGroups, GroupTypes elements --><!-- IMSDirectory consists of the following attributes:  --><!-- 1. name - required unique name for the directory  --><!-- 2. well-known file - reference to a file that contains the list of required well-known names for attributes  --><!-- 3. version - version of the directory xml file  --><!-- 4. description - (optional) description for the Identity Manager logical directory  --><ImsDirectory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="From CA, formerly eTrust Directory" name="CA Directory---19772ea49ed" wellknownfile="imsconfig://wellknown/LDAPImsWellKnown.xml" xsi:noNamespaceSchemaLocation="imsconfig://schema/ImsDirectory.xsd">
+
+	<!--   ******************** Provider Information ********************   -->
+ 	<!-- Provider to use to access the SiteMinder user directory consisting of the following attributes:  -->
+ 	<!-- Provider contains a LDAP element, 1 or more Connection elements, and optionally, a Credentials element and/or eTrustAdmin element -->
+ 	<!-- 1. type - provider type (LDAP)  -->
+ 	<!-- 2. user directory - Name of the SiteMinder user directory instance this logical directory will use to connect to the physical directory -->
+
+    <Provider type="LDAP" userdirectory="@SMDirName">
+		<!--LDAP provides the information about the.  -->
+ 		<!--1. host - The machine name or IP address of the LDAP server -->
+ 		<!--2. port - (Optional) The port to connect to. Defaults to 389 if not supplied -->
+ 		<!--3. secure - (Optional) Indicates if the connection is secure. Defaults to false -->
+ 		<!--4. searchroot - The search root for the user directory -->
+ 		<!--5. user - Username to use when connecting -->
+ 		<!--6. cleartext - (Optional) Indicates if the password is cleartext. By default, if not specified the password is encrypted -->
+ 		<!--The data element is the password to use when connecting.  This is an encrypted value unless cleartext=true . -->
+ 		<!--Use the password tool included in the Identity Manager admin toolkit to generate the encrypted value. -->
+
+        <LDAP searchroot="o=democorp,c=us" secure="false"/>
+
+		<!--Credentials are used to connect -->
+ 		<!--1. user - Username to use when connecting -->
+ 		<!--2. cleartext - (Optional) Indicates if the password is cleartext. By default, if not specified the password is encrypted -->
+ 		<!--The data element is the password to use when connecting.  This is an encrypted value unless cleartext=true . -->
+ 		<!--Use the password tool included in the Identity Manager admin toolkit to generate the encrypted value. -->
+
+        <Credentials user="cn=admin,o=democorp,c=US">{PBES}:WQf3wza4JfbqICD/4D8xog==</Credentials>
+
+		<!--Connection provides the information necessary to connect to a LDAP server and optional fail over servers.  -->
+ 		<!--If multiple Connection elements are listed, they represent the load balancing to use from top to bottom.  -->
+ 		<!--1. host - The machine name or IP address of the LDAP server -->
+
+        <Connection failover="" host="sample-app-ssp-symantec-dir.sample-app.svc.cluster.local" port="389"/>
+    </Provider>
+
+	<!--   ******************** Managed Object Information ********************   -->
+ 	<!-- ImsManaged Object describes a type of managed object, such as a user, organization, or group object. -->
+ 	<!-- ImsManagedObject contains ImsManagedObjectAttr elements.  -->
+ 	<!-- ImsManagedObject consists of the following attributes:  -->
+ 	<!-- 1. name - unique name for the managed object  -->
+ 	<!-- 2. description - (optional) description for the managed object  -->
+ 	<!-- 3. objectclass - the object class of the managed object -->
+ 	<!-- 4. objecttype - the type of the object that the ImsManagedObject element describes (USER, GROUP, ORG).   -->
+ 	<!-- Only one instance of each object type can be specified for a directory -->
+
+	<!--   ******************** User Object ********************   -->
+	<ImsManagedObject description="My Users" name="User" objectclass="inetOrgPerson,organizationalPerson,person,top" objecttype="USER">
+
+		<!-- ImsManagedObjectAttr describes a specific attribute on a managed object -->
+ 		<!-- ImsManagedObjectAttr consists of the following attributes: -->
+ 		<!-- 1. physicalname - (optional) if supplied, the attribute represents an attribute that is persisted rather than computed  -->
+ 		<!-- 2. objectclass - (optional) the objectclass the attribute is defined on.  If not specified, the attribute can be found in the objectclass specified on the ImsManagedObject element -->
+ 		<!-- 3. description - (optional) description of the attribute -->
+ 		<!-- 4. displayname - unique name for the managed object attribute -->
+ 		<!-- 5. valuetype - data type for the attribute (String, Integer, Number, Date, ISODate, UnicenterDate) -->
+ 		<!-- 6. required - (optional) indicates if the attribute is required. Defaults to false -->
+ 		<!-- 7. multivalued - (optional) indicates if the attribute is multivalued. Defaults to false -->
+ 		<!-- 8. wellknown - (optional) if a well-known name is supplied, the attribute is mapped to the well-known name and can be referenced by the well-known name rather than the physical name or display name. Well-known names have the following syntax: %NAME% -->
+ 		<!-- 9. maxlength - (optional) maximum length of the value for the attribute.	Defaults to 0 (no size limit) -->
+        <!--10. searchable - (optional) if supplied, the attribute is searchable. It will search users with this attribute if we add searchable="true". Defaults to false. Values are true/false.  -->
+
+		<!-- The following user attributes are used by IdentityMinder for special purposes and must be mapped to a physical attribute in the directory -->
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.disabledState}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.disabledState}" hidden="true" maxlength="0" multivalued="false" physicalname="carLicense" required="false" valuetype="String" wellknown="%ENABLED_STATE%"/>
+
+		<!-- The next set of user attributes refer to those attributes IdentityMinder might use for special functionality -->
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.userID}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.userID}" maxlength="0" multivalued="false" permission="WRITEONCE" physicalname="cn" required="true" searchable="true" valuetype="String" wellknown="%USER_ID%"/>
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.fullName}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.fullName}" maxlength="0" multivalued="false" physicalname="description" required="true" searchable="true" valuetype="String" wellknown="%FULL_NAME%"/>
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.lastName}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.lastName}" maxlength="0" multivalued="false" physicalname="sn" required="true" valuetype="String" wellknown="%LAST_NAME%"/>
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.firstName}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.firstName}" maxlength="0" multivalued="false" physicalname="givenName" required="true" valuetype="String" wellknown="%FIRST_NAME%"/>
+		<ImsManagedObjectAttr description="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.password}" displayname="${bundle=com.ca.siteminder.webadmin.tabs.LocalStrings:key=label.attributeMapping.displayName.password}" maxlength="0" multivalued="false" physicalname="userPassword" required="false" valuetype="String" wellknown="%PASSWORD%">
+			<DataClassification name="sensitive"/>
+		</ImsManagedObjectAttr>
+
+	</ImsManagedObject>
+
+</ImsDirectory>
