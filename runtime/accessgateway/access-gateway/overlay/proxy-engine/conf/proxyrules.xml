@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?cocoon-process type="xslt"?>
+<!DOCTYPE nete:proxyrules SYSTEM "file:////opt/CA/secure-proxy/proxy-engine/conf/dtd/proxyrules.dtd">
+
+<!-- Proxy Rules-->
+<nete:proxyrules xmlns:nete="http://sps2.demo-broadcom.com/">
+  <nete:cond type="uri" criteria="beginswith">
+    <!-- JWT auth scheme test backend (jwt-test-api Service, ns siteminderag) -->
+    <nete:case value="/api/jwt-test">
+      <nete:forward>http://jwt-test-api.siteminderag.svc.cluster.local:8080$0</nete:forward>
+    </nete:case>
+    <nete:case value="/mcp-test">
+      <nete:forward>http://jwt-test-api.siteminderag.svc.cluster.local:8080$0</nete:forward>
+    </nete:case>
+    <nete:default>
+      <nete:forward>http://sps2.demo-broadcom.com/siteminderdefaultwebpage.html</nete:forward>
+    </nete:default>
+  </nete:cond>
+</nete:proxyrules>
